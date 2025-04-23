@@ -1,0 +1,4 @@
+processing/cache
+processing/pipeline/logs
+processing/pipeline/indexes
+__pycache__

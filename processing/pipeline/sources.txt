@@ -1,0 +1,8 @@
+## Local file
+file://data/apache_2.0_license.txt
+## Online article
+https://opensource.org/license/afl-3-0-php
+https://opensource.org/license/bsd-1-clause
+https://opensource.org/license/apl1-0-php
+https://opensource.org/license/gpl-2-0
+https://opensource.org/license/gpl-3-0

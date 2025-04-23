@@ -1,0 +1,40 @@
+Aion Sigma's (https://aionsigma.com/) RAG POC (Proof of Concept) is a collection of bash scripts and Python tools for building and interacting with a Retrieval-Augmented Generation (RAG) system, leveraging FAISS vector databases and Mistral LLMs. This project provides a flexible and easy-to-use interface for experimenting with RAG-based applications.
+
+Environment: Docker Desktop + Ubuntu 22.04 running in WSL on Windows 11 Pro
+Run createContainer.sh to generate an image with the proper environment for running the scripts.
+Run "runContainer.sh dev" for starting a container based on the previously created image.
+
+Features:
+
+    - Create a FAISS vector database from a list of files/URLs specified in a sources.txt file (for RAG context retrieval)
+    - Load an existing vector database and query it from the command line
+    - Ask a question to a Mistral LLM, providing context from a vector database using RAG
+    - Engage in a conversational interface with a Mistral LLM, using conversation history as context and RAG for retrieval
+    - Interactive UI-based conversational interface using Gradio
+
+Usage:
+
+The project consists of several bash scripts that create and run a Docker container, allowing users to execute Python scripts for the above-mentioned features. The scripts are designed to be easy to use and modify.
+
+Scripts:
+
+    - 01.import_data.py: Create a FAISS vector database from sources listed in a sources.txt file (for RAG context retrieval)
+        - run this before the other scripts so that you get a vector DB to test with
+    - 02.load_and_query_idx.py: Load an existing vector database and query it from the command line
+    - 03.simple_pipeline.py: Ask a question to a Mistral LLM, providing context from a vector database using RAG
+    - 04.conversational_pipeline.py: Engage in a conversational interface with a Mistral LLM, using conversation history as context and RAG for retrieval
+    - 05.conversational_ui.py: Interactive UI-based conversational interface using Gradio
+
+RAG Overview:
+
+This POC demonstrates a basic RAG system, which combines the strengths of retrieval-based and generation-based models. The system uses a FAISS vector database to retrieve relevant context, which is then used to augment the input to a Mistral LLM. This allows for more accurate and informative responses.
+
+Authors: Aion Sigma - https://aionsigma.com/
+
+License:
+
+This project is licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
