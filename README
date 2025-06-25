@@ -20,6 +20,7 @@ Scripts:
 
     - 01.import_data.py: Create a FAISS vector database from sources listed in a sources.txt file (for RAG context retrieval)
         - run this before the other scripts so that you get a vector DB to test with
+        - see processing/pipeline/common/fileparse.py (loaders dictionary) for supported formats
     - 02.load_and_query_idx.py: Load an existing vector database and query it from the command line
     - 03.simple_pipeline.py: Ask a question to a Mistral LLM, providing context from a vector database using RAG
     - 04.conversational_pipeline.py: Engage in a conversational interface with a Mistral LLM, using conversation history as context and RAG for retrieval

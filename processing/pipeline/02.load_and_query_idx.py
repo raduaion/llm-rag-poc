@@ -27,21 +27,26 @@ db = FAISS.load_local(index, HuggingFaceEmbeddings(model_name=gcfg.ST_MODEL_NAME
 
 # Connect query to FAISS index using a retriever
 retriever = db.as_retriever(
-    search_type="similarity",
-    search_kwargs={'k': 6}
+    search_type="mmr",
+    search_kwargs={'k': 5}
 )
 
 query=""
 while query != gcfg.EXIT_COMMAND:
-    print("-------------------------------------------------")
+    print("-" * 50)
     try:
         query = input("Please enter your question: ")
     except KeyboardInterrupt:
         print(f"\n{gcfg.EXIT_COMMAND}")
         sys.exit(0)
-    docs = db.similarity_search(query)
+    # docs = db.similarity_search(query)
+    docs = retriever.invoke(query)
     print("You asked: " + query)
     print("Found the following information:")
     for doc in docs:
+        print("_" * 50)
         print("\t" + doc.page_content + "\n\n")
-    print("-------------------------------------------------")
+        print("_" * 20)
+        print(doc.metadata)
+        print("_" * 50)
+    print("-" * 50)

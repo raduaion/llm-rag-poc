@@ -7,6 +7,7 @@ tensorflow
 langchain
 langchain-community
 langchain-huggingface
+langchain_experimental
 playwright
 playwright-stealth
 html2text

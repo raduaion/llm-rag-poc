@@ -24,7 +24,8 @@ from datetime import datetime, timezone
 import os
 
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+# from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_experimental.text_splitter import SemanticChunker
 from langchain_community.vectorstores import FAISS
 
 sources = open(gcfg.SOURCES_FILE, "r")
@@ -38,7 +39,7 @@ ignored = []
 for source in sources.read().splitlines():
     if source.startswith(("http://", "https://")):
         webarticles.append(source)
-    elif source.startswith("file://"):
+    elif source.startswith("file://") or source.startswith("discourse://"):
         local_files.append(source)
     elif source.startswith("##"):
         # print(f"{source} is a comment")
@@ -72,8 +73,10 @@ if len(webarticles) != 0:
     print("Processing {} web articles".format(len(webarticles)))
     docs_transformed.extend(wp.parse(webarticles))
 
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=gcfg.TS_CHUNK_SIZE,
-                                      chunk_overlap=gcfg.TS_CHUNK_OVERLAP)
+# text_splitter = RecursiveCharacterTextSplitter(chunk_size=gcfg.TS_CHUNK_SIZE,
+#                                       chunk_overlap=gcfg.TS_CHUNK_OVERLAP)
+text_splitter = SemanticChunker(HuggingFaceEmbeddings(model_name=gcfg.ST_MODEL_NAME))
+
 if len(local_files) != 0:
     print("Processing {} local files".format(len(local_files)))
     docs_transformed.extend(fp.parse(local_files, text_splitter))

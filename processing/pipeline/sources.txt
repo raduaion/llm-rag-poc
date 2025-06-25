@@ -6,3 +6,5 @@ https://opensource.org/license/bsd-1-clause
 https://opensource.org/license/apl1-0-php
 https://opensource.org/license/gpl-2-0
 https://opensource.org/license/gpl-3-0
+## Locally cached Discourse based forum
+#discourse://data/download-path/

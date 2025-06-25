@@ -32,7 +32,7 @@ query = ""
 while query != gcfg.EXIT_COMMAND:
     gcfg.llm_log("-------------------------------------------------")
     try:
-        query = input(f"[#{session['question_number']}] Please enter your question: ")
+        query = input(f"[#{session['question_number'] + 1}] Please enter your question: ")
         if query == gcfg.EXIT_COMMAND:
             continue
         if query == gcfg.CLEAR_COMMAND:
